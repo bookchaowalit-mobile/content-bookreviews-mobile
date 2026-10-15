@@ -10,8 +10,10 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "validate": "npm run lint && npm run typecheck && npm test"
+    "test": "npm run test:unit && npm run test:native",
+    "validate": "npm run lint && npm run typecheck && npm test",
+    "test:unit": "vitest run",
+    "test:native": "jest --runInBand"
   },
   "dependencies": {
     "@expo/vector-icons": "~14.0.4",
@@ -31,9 +33,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.0",
+    "@testing-library/react-native": "13.3.3",
+    "@types/jest": "29.5.14",
     "@types/react": "~18.3.12",
     "eslint": "^8.57.0",
     "eslint-config-expo": "~8.0.1",
+    "jest": "29.7.0",
+    "jest-expo": "52.0.6",
+    "react-test-renderer": "18.3.1",
     "typescript": "^5.3.0",
     "vitest": "^3.2.7"
   },

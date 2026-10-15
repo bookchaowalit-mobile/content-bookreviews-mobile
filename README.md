@@ -63,12 +63,20 @@ inside Expo's own build tooling (`@expo/prebuild-config` → `node-tar`,
 ```bash
 npm ci
 npm run web       # or: npm run ios / npm run android
-npm run validate  # expo lint + tsc --noEmit + vitest
+npm run validate  # expo lint + tsc --noEmit + both test suites
 npx expo export --platform android --output-dir dist   # bundle smoke check
 ```
 
 Pure logic lives in `lib/books.ts` and is unit-tested with Vitest
-(`lib/books.test.ts`). CI (`.github/workflows/build.yml`) runs all of the above
+(`npm run test:unit`). Native integration tests use the SDK 52 `jest-expo`
+preset (`npm run test:native`, or `npx jest --runInBand`). The tests under
+`__tests__/` exercise storage add/update/delete, completion dates, refusal to
+overwrite unreadable data, write failures, and the real Library screen with
+its `BookProvider` (loading, persisted books, search, filters and navigation).
+Only native storage, font icons and router navigation are mocked; the storage
+adapter, context and screen run together. `npm test` runs both suites.
+
+CI (`.github/workflows/build.yml`) runs all of the above
 and fails on errors; the EAS preview build is owner-triggered
 (`workflow_dispatch`) and needs the `EXPO_TOKEN` secret. See
 `docs/UPGRADE-PLAN.md` for the backlog.
