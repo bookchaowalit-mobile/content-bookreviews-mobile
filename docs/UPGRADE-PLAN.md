@@ -58,3 +58,16 @@ Score: 7.5/10 (was 7/10) — edge-case hunt in `lib/books.ts` / `lib/storage.ts`
 - Bug: the cover used `title.charAt(0)`, which renders half a surrogate pair for a title starting with an emoji; `coverInitial` uses the first code point.
 - Bug: `normalizeNotes` could cut an emoji in half at the 2000-unit cap.
 - Verified: typecheck, lint, 18 vitest tests, Android `expo export`.
+
+## Done in this pass (pass 4, 2026-10-23)
+
+- CI moved to the shared `platform-ci-workflows` v1.1.1 (`ci-node` + `security`), with
+  `require-tests` and a 58% line-coverage gate; the old `build.yml` and its EAS job are gone.
+- One test runner: the Vitest suites (`lib/*.test.ts`) now run in Jest, so coverage counts
+  every test; dropping Vitest also removed the vitest/vite/tinypool advisories.
+- Lockfile-only `npm update` of compression, shell-quote and source-map-js (`npm audit fix` was
+  not used: it pulled a newer-SDK `expo-linking` and broke the Android bundle). Remaining advisories (tar 6, @xmldom/xmldom 0.7, uuid,
+  image-size, braces, node-forge in Expo SDK 52 CLI/build tooling, plus decode-uri-component via
+  react-navigation) are each listed with a
+  reason and expiry in `osv-scanner.toml` / `.trivyignore`. The SDK 53+ upgrade (P2) clears them.
+- Added `PRODUCT.md`. Found: the profile screen lists "Set reading goals", which does not exist (P1).

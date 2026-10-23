@@ -1,0 +1,35 @@
+# Reviewed Trivy exceptions (HIGH/CRITICAL with a fix only). Reasons match osv-scanner.toml.
+# Reviewed 2026-10-23; re-check on the Expo SDK 53+ upgrade or by 2027-01-23.
+
+# @xmldom/xmldom 0.7.13: dev/build-time only via @expo/cli -> @expo/plist 0.2 on this repo's own
+# plist files (expo prebuild, never run in CI, not in the app bundle). Fix is 0.8.x, which needs SDK 53+.
+CVE-2026-34601 exp:2027-01-23
+CVE-2026-41672 exp:2027-01-23
+CVE-2026-41673 exp:2027-01-23
+CVE-2026-41674 exp:2027-01-23
+CVE-2026-41675 exp:2027-01-23
+CVE-2026-83605 exp:2027-01-23
+CVE-2026-83607 exp:2027-01-23
+CVE-2026-83608 exp:2027-01-23
+CVE-2026-83613 exp:2027-01-23
+CVE-2026-83614 exp:2027-01-23
+CVE-2026-83615 exp:2027-01-23
+CVE-2026-83616 exp:2027-01-23
+CVE-2026-83619 exp:2027-01-23
+
+# tar 6.2.1: dev-only via @expo/cli 0.22 / cacache extracting Expo-published archives; never shipped.
+# Fix is tar 7.x (different API) which @expo/cli on SDK 52 does not accept; needs SDK 53+.
+CVE-2026-59873 exp:2027-01-23
+CVE-2026-23745 exp:2027-01-23
+CVE-2026-23950 exp:2027-01-23
+CVE-2026-24842 exp:2027-01-23
+CVE-2026-26960 exp:2027-01-23
+CVE-2026-29786 exp:2027-01-23
+CVE-2026-31802 exp:2027-01-23
+CVE-2026-59874 exp:2027-01-23
+CVE-2026-73566 exp:2027-01-23
+
+# image-size 1.2.1: build-time only via metro reading this repo's own image assets; 2.0.3 changes the
+# export metro requires and breaks bundling.
+CVE-2025-71329 exp:2027-01-23
+CVE-2025-71330 exp:2027-01-23

@@ -1,0 +1,184 @@
+# Reviewed OSV exceptions for BookEverything (Expo SDK 52). Each entry has a reason and an expiry.
+# Reviewed 2026-10-23 when the repo moved to platform-ci-workflows v1.1.1 (ci-node + security).
+# Fixed instead of ignored: dropped vitest (all tests run in Jest now), which removed the vitest,
+# @vitest/mocker, vite and tinypool advisories; a lockfile-only `npm update` cleared compression,
+# shell-quote and source-map-js. Everything below except decode-uri-component is Expo SDK 52 CLI /
+# build tooling that is not shipped in the app bundle. All of it needs the Expo SDK 53+ upgrade
+# (docs/UPGRADE-PLAN.md P2). Re-check on that upgrade or at expiry.
+
+# @xmldom/xmldom 0.7.13 via @expo/cli -> @expo/plist 0.2.2 (Expo SDK 52 CLI). Parses this repo's own
+# Info.plist / config during `expo prebuild` / `expo run:ios`; not in the app bundle, and CI never runs
+# prebuild. Fixed only in 0.8.x, which @expo/plist 0.2 does not accept; SDK 53 moves to @expo/plist 0.3.
+[[IgnoredVulns]]
+id = "GHSA-27p8-2357-5qqv"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-2v35-w6hq-6mfw"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-4w3w-2rp5-g8jm"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-6gmq-8vp8-gcm6"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-6h8r-xr42-gp59"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-8344-3jmq-59r6"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-93r5-fhx6-vmg9"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-965w-775f-mr7g"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-c7q8-3ch8-vqpv"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-f6ww-3ggp-fr8h"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-j759-j44w-7fr8"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-w2rr-34g9-rvrj"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-wh4c-j3r5-mjhp"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-x4fp-j954-r2f4"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-x6wf-f3px-wcqx"
+ignoreUntil = 2027-01-23
+reason = "@xmldom/xmldom 0.7 XML parsing flaw; dev/build-time only via @expo/cli -> @expo/plist on our own plist files; fix needs Expo SDK 53+."
+
+# tar 6.2.1 via @expo/cli 0.22 (and its cacache 18). Extracts Expo templates / caches during CLI
+# commands such as `expo prebuild`; never shipped in the app. Fixed only in tar 7.x (different API);
+# @expo/cli on SDK 52 pins tar 6. Clears with the Expo SDK 53+ upgrade.
+[[IgnoredVulns]]
+id = "GHSA-23hp-3jrh-7fpw"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-34x7-hfp2-rc4v"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-83g3-92jg-28cx"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-8qq5-rm4j-mr97"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-8x88-c5mf-7j5w"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-9ppj-qmqm-q256"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-gvwx-54wh-qm9j"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-qffp-2rhf-9h96"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-r292-9mhp-454m"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-r6q2-hw4h-h46w"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-vmf3-w455-68vh"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+[[IgnoredVulns]]
+id = "GHSA-w8wr-v893-vjvp"
+ignoreUntil = 2027-01-23
+reason = "tar 6 archive extraction flaw; dev-only via @expo/cli/cacache extracting Expo-published archives; fixed only in tar 7, needs Expo SDK 53+."
+
+# uuid 7.0.3 (xcode, expo prebuild iOS project editing) and 8.3.2 (@expo/rudder-sdk-node telemetry in
+# the CLI). Both only call v4 without a caller buffer. Fixed only in uuid 11+.
+[[IgnoredVulns]]
+id = "GHSA-w5hq-g745-h8pq"
+ignoreUntil = 2027-01-23
+reason = "uuid v3/v5/v6 buffer bounds; dev-only via xcode and @expo/rudder-sdk-node, which only use v4 without a caller buffer; fixed only in uuid 11+."
+
+# image-size 1.2.1: build-time only, metro reads this repo's own committed image assets; 2.x changes
+# the export shape metro requires.
+[[IgnoredVulns]]
+id = "GHSA-5p2g-fcmc-qvqq"
+ignoreUntil = 2027-01-23
+reason = "image-size DoS on crafted images; build-time only via metro on our own assets; 2.0.3 breaks metro on SDK 52."
+
+[[IgnoredVulns]]
+id = "GHSA-w3rx-r6r6-pgpr"
+ignoreUntil = 2027-01-23
+reason = "image-size DoS on crafted images; build-time only via metro on our own assets; 2.0.3 breaks metro on SDK 52."
+
+# No fixed release exists for these three.
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2027-01-23
+reason = "braces nested-pattern stack exhaustion; no fixed release; dev/build tooling (jest-haste-map/metro micromatch) globbing our own sources."
+
+[[IgnoredVulns]]
+id = "GHSA-86w9-cpqp-85rv"
+ignoreUntil = 2027-01-23
+reason = "node-forge RSA PKCS#1 v1.5 signature check; no fixed release; only in @expo/cli code-signing for dev/EAS updates, which this repo does not use."
+
+# Fixed only in an incompatible major.
+[[IgnoredVulns]]
+id = "GHSA-vcc3-ghjq-m6fr"
+ignoreUntil = 2027-01-23
+reason = "decode-uri-component DoS; via query-string 7 in @react-navigation/core 7 (expo-router 4); fixed only in ESM-only 0.5.0 that query-string 7 cannot load. Worst case a malformed deep link stalls this local app instance; no server."

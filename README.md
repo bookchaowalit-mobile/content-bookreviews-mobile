@@ -63,20 +63,25 @@ inside Expo's own build tooling (`@expo/prebuild-config` → `node-tar`,
 ```bash
 npm ci
 npm run web       # or: npm run ios / npm run android
-npm run validate  # expo lint + tsc --noEmit + both test suites
+npm run validate  # expo lint + tsc --noEmit + jest
 npx expo export --platform android --output-dir dist   # bundle smoke check
 ```
 
-Pure logic lives in `lib/books.ts` and is unit-tested with Vitest
-(`npm run test:unit`). Native integration tests use the SDK 52 `jest-expo`
-preset (`npm run test:native`, or `npx jest --runInBand`). The tests under
-`__tests__/` exercise storage add/update/delete, completion dates, refusal to
-overwrite unreadable data, write failures, and the real Library screen with
-its `BookProvider` (loading, persisted books, search, filters and navigation).
-Only native storage, font icons and router navigation are mocked; the storage
-adapter, context and screen run together. `npm test` runs both suites.
+All tests run in Jest with the SDK 52 `jest-expo` preset (`npm test`).
+`lib/books.test.ts` and `lib/notes.test.ts` cover the pure logic in
+`lib/books.ts`; the tests under `__tests__/` exercise storage
+add/update/delete, completion dates, refusal to overwrite unreadable data,
+write failures, and the real Library screen with its `BookProvider`
+(loading, persisted books, search, filters and navigation). Only native
+storage, font icons and router navigation are mocked.
 
-CI (`.github/workflows/build.yml`) runs all of the above
-and fails on errors; the EAS preview build is owner-triggered
-(`workflow_dispatch`) and needs the `EXPO_TOKEN` secret. See
-`docs/UPGRADE-PLAN.md` for the backlog.
+CI (`.github/workflows/ci.yml`) calls the shared
+`bookchaowalit/platform-ci-workflows` v1.1.1 (pinned by SHA): `npm ci`, lint,
+typecheck, Jest with a line-coverage gate (58%, measured 2026-10-23), the
+Android JS bundle export, and the security scans (gitleaks, Semgrep,
+OSV-Scanner, Trivy). Nothing is masked. Dependency advisories that sit inside
+Expo SDK 52 CLI/build tooling are listed with a reason and expiry in
+`osv-scanner.toml` and `.trivyignore`; they clear with the SDK 53+ upgrade.
+EAS / Expo cloud builds are not run in CI (they need the owner's Expo
+account). See `PRODUCT.md` for what the app does and `docs/UPGRADE-PLAN.md`
+for the backlog.

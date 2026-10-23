@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { coverInitial, exportLibrary, MAX_NOTES_LENGTH, normalizeNotes, parseStoredBooks, parseStoredBooksForWrite } from './books';
 
 const book = {
